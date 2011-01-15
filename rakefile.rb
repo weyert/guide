@@ -22,24 +22,35 @@ project_model :model do |m|
   m.src_dir                 = 'flash/src'
   m.lib_dir                 = 'flash/lib/src'
   m.swc_dir                 = 'flash/lib/swc'
-  m.bin_dir                 = 'flash/lib/bin'
+  m.bin_dir                 = 'flash/bin'
   m.test_dir                = 'test'
   # m.doc_dir               = 'doc'
   m.asset_dir               = 'flash/assets'
   m.compiler_gem_name       = 'sprout-flex4sdk-tool'
   m.compiler_gem_version    = '>= 4.0.0'
+
+  m.source_path           << "#{m.lib_dir}/robotlegs"
+  m.source_path           << "#{m.lib_dir}/greensock"
+  
   # m.source_path           << "#{m.lib_dir}/somelib"
   # m.libraries             << :corelib
 end
 
 desc 'Compile and debug the application'
-debug :debug
+debug :debug do |t|
+end
 
 desc 'Compile run the test harness'
-unit :test
+unit :test do |t|
+  t.source_path           << "flash/lib/src/mockolate"  
+  t.library_path          << 'flash/lib/swc/asx.swc'
+  t.library_path          << 'flash/lib/swc/hamcrest.swc'
+  t.library_path          << 'flash/lib/swc/FLoxy.swc'
+end
 
 desc 'Compile the optimized deployment'
-deploy :deploy
+deploy :deploy do |t|
+end
 
 desc 'Create documentation'
 document :doc
