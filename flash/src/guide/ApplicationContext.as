@@ -6,7 +6,7 @@ package guide {
 	import org.robotlegs.mvcs.Context;
 	
 	public class ApplicationContext extends Context {
-		
+		 
 		/**
 		 * Factory method. Provide the Context with the necessary objects to do its work.
 		 * Note that the both the injector and reflector are programmed to interfaces
@@ -23,7 +23,7 @@ package guide {
 			super(contextView, autoStartup);
 		}
 		
-		/**
+		/** 
 		 * Gets called by the framework if autoStartup is true. Here we need to provide
 		 * the framework with the basic actors. The proxies/services we want to use in
 		 * the model, map some view components to Mediators and to get things started,
@@ -31,7 +31,7 @@ package guide {
 		 * RobotLegs will create the Mediator. 
 		 *
 		 */
-		override public function startup():void
+	    override public function startup():void
 		{
 			// Map some Commands to Events
 			trace("ApplicationContext.startup()");

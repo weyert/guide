@@ -1,0 +1,4 @@
+# Ignoring a bunch of annoying Eclipse project files
+/.settings/*
+/.project
+/.actionScriptProperties
