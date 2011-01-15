@@ -2,11 +2,14 @@ package guide {
 	
 	import flash.display.DisplayObjectContainer;
 	
+	import guide.controller.commands.StartApplicationCommand;
+	import guide.controller.commands.bootstraps.BootstrapStartup;
+	
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
 	
 	public class ApplicationContext extends Context {
-		 
+		  
 		/**
 		 * Factory method. Provide the Context with the necessary objects to do its work.
 		 * Note that the both the injector and reflector are programmed to interfaces
@@ -18,7 +21,6 @@ package guide {
 		 * @param autoStartup Boolean
 		 *
 		 */
-		
 		public function ApplicationContext(contextView:DisplayObjectContainer = null, autoStartup:Boolean = true) {
 			super(contextView, autoStartup);
 		}
@@ -34,7 +36,8 @@ package guide {
 	    override public function startup():void
 		{
 			// Map some Commands to Events
-			trace("ApplicationContext.startup()");
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, BootstrapStartup, ContextEvent, true);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartApplicationCommand, ContextEvent, true);
 			
 			// and we're done
 			super.startup();

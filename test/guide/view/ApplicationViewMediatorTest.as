@@ -4,16 +4,16 @@ package guide.view {
 
 	import org.robotlegs.mvcs.Mediator;
 
-	public class ApplicationMediatorTest extends TestCase {
-		private var instance:ApplicationMediator;
+	public class ApplicationViewMediatorTest extends TestCase {
+		private var instance:ApplicationViewMediator;
 
-		public function ApplicationMediatorTest(methodName:String=null) {
+		public function ApplicationViewMediatorTest(methodName:String=null) {
 			super(methodName)
 		}
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new ApplicationMediator();
+			instance = new ApplicationViewMediator();
 		}
 
 		override protected function tearDown():void {
@@ -22,7 +22,7 @@ package guide.view {
 		}
 
 		public function testInstantiated():void {
-			assertTrue("instance is ApplicationMediator", instance is ApplicationMediator);
+			assertTrue("instance is ApplicationViewMediator", instance is ApplicationViewMediator);
 		}
 
 		public function testIsMediator():void {

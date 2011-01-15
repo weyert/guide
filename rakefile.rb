@@ -13,8 +13,8 @@ project_model :model do |m|
   m.project_name            = 'TVGuide'
   m.language                = 'as3'
   m.background_color        = '#FFFFFF'
-  m.width                   = 970
-  m.height                  = 550
+  m.width                   = 1024
+  m.height                  = 600
   # m.use_fdb               = true
   # m.use_fcsh              = true
   # m.preprocessor          = 'cpp -D__DEBUG=false -P - - | tail -c +3'
@@ -31,13 +31,14 @@ project_model :model do |m|
 
   m.source_path           << "#{m.lib_dir}/robotlegs"
   m.source_path           << "#{m.lib_dir}/greensock"
-  
+    
   # m.source_path           << "#{m.lib_dir}/somelib"
   # m.libraries             << :corelib
 end
 
 desc 'Compile and debug the application'
 debug :debug do |t|
+  t.load_config           << "dev/constants-config.xml"
 end
 
 desc 'Compile run the test harness'
