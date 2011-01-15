@@ -1,0 +1,9 @@
+<flex-config> 
+        <target-player>10.0.0</target-player> 
+        <compiler> 
+                <define> 
+                        <name>CONFIG::API_KEY</name>
+						<value>ABCD1234</value> 
+                </define> 
+        </compiler> 
+</flex-config>
