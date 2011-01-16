@@ -39,6 +39,7 @@ end
 desc 'Compile and debug the application'
 debug :debug do |t|
   t.load_config           << "dev/constants-config.xml"
+  t.debug                  = true
 end
 
 desc 'Compile run the test harness'
