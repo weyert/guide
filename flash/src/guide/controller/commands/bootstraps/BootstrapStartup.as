@@ -1,5 +1,7 @@
 package guide.controller.commands.bootstraps {
 
+	import guide.controller.commands.ConfigureModelsCommand;
+	import guide.controller.commands.StartViewCommand;
 	import guide.controller.events.ApplicationEvent;
 	
 	import org.robotlegs.mvcs.Command;
@@ -7,9 +9,10 @@ package guide.controller.commands.bootstraps {
 	public class BootstrapStartup extends Command {
 		
 		override public function execute(): void {
-			trace("BootstrapStartup.execute(): commandMap=" + commandMap);
-//			commandMap.mapEvent(ApplicationEvent.STARTED, BootstrapModels, ApplicationEvent, true);
-//			commandMap.mapEvent(ApplicationEvent.STARTED, BootstrapViewMediators, ApplicationEvent, true);
+			commandMap.mapEvent(ApplicationEvent.STARTED, BootstrapModels, ApplicationEvent, true);
+			commandMap.mapEvent(ApplicationEvent.STARTED, BootstrapViewMediators, ApplicationEvent, true);
+			commandMap.mapEvent(ApplicationEvent.STARTED, StartViewCommand, ApplicationEvent, true);
+			commandMap.mapEvent(ApplicationEvent.STARTED, ConfigureModelsCommand, ApplicationEvent, true);
 		} 
 	}
 }

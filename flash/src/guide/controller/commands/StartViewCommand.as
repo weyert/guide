@@ -2,6 +2,7 @@ package guide.controller.commands {
 
 	import flash.display.Sprite;
 	
+	import guide.controller.events.ApplicationEvent;
 	import guide.view.ApplicationView;
 	
 	import org.robotlegs.mvcs.Command;

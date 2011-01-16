@@ -1,8 +1,16 @@
 package guide.controller.commands {
 
-	import org.robotlegs.mvcs.Command;
-
 	import asunit.framework.TestCase;
+	
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	
+	import guide.model.IScheduleModel;
+	
+	import mockolate.nice;
+	import mockolate.prepare;
+	
+	import org.robotlegs.mvcs.Command;
 
 	public class ConfigureModelsCommandTest extends TestCase {
 		private var instance:ConfigureModelsCommand;
@@ -11,9 +19,20 @@ package guide.controller.commands {
 			super(methodName)
 		}
 
+		override public function run():void{
+			var mockolateMaker:IEventDispatcher = prepare(IScheduleModel);
+			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
+		}
+		
+		private function prepareCompleteHandler(e:Event):void{
+			IEventDispatcher(e.target).removeEventListener(Event.COMPLETE, prepareCompleteHandler);
+			super.run();
+		}
+		
 		override protected function setUp():void {
 			super.setUp();
 			instance = new ConfigureModelsCommand();
+			instance.scheduleModel = nice(IScheduleModel);
 		}
 
 		override protected function tearDown():void {

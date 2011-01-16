@@ -32,6 +32,8 @@ project_model :model do |m|
   m.source_path           << "#{m.lib_dir}/robotlegs"
   m.source_path           << "#{m.lib_dir}/greensock"
     
+  m.support_dir             = 'support'  
+
   # m.source_path           << "#{m.lib_dir}/somelib"
   # m.libraries             << :corelib
 end
@@ -39,11 +41,13 @@ end
 desc 'Compile and debug the application'
 debug :debug do |t|
   t.load_config           << "dev/constants-config.xml"
+  t.source_path           << "support" 
   t.debug                  = true
 end
 
 desc 'Compile run the test harness'
 unit :test do |t|
+  t.source_path           << "support" 
   t.source_path           << "flash/lib/src/mockolate"  
   t.library_path          << 'flash/lib/swc/asx.swc'
   t.library_path          << 'flash/lib/swc/hamcrest.swc'

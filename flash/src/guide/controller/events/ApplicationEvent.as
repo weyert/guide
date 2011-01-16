@@ -5,6 +5,7 @@ package guide.controller.events {
 	public class ApplicationEvent extends Event {
 		
 		public static const STARTED:String = "ApplicationEvent.appStarted";		
+		public static const UPDATE:String = "ApplicationEvent.appUpdate";		
 		
 		public function ApplicationEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false ){
 			super(type, bubbles, cancelable);		

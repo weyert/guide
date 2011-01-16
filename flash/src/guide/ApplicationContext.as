@@ -6,6 +6,14 @@ package guide {
 	import guide.controller.commands.bootstraps.BootstrapStartup;
 	
 	import org.robotlegs.base.ContextEvent;
+	import org.robotlegs.base.GuardedCommandMap;
+	import org.robotlegs.base.OptionCommandMap;
+	import org.robotlegs.base.RelaxedEventMap;
+	import org.robotlegs.core.ICommandMap;
+	import org.robotlegs.core.IGuardedCommandMap;
+	import org.robotlegs.core.IOptionCommandMap;
+	import org.robotlegs.core.IRelaxedEventContext;
+	import org.robotlegs.core.IRelaxedEventMap;
 	import org.robotlegs.mvcs.Context;
 	
 	public class ApplicationContext extends Context {
@@ -42,5 +50,44 @@ package guide {
 			// and we're done
 			super.startup();
 		}
+		
+		protected var _relaxedEventMap:IRelaxedEventMap;
+		
+		public function get relaxedEventMap():IRelaxedEventMap
+		{
+			return _relaxedEventMap ||= new RelaxedEventMap(eventDispatcher);
+		}
+		
+		public function set relaxedEventMap(value:IRelaxedEventMap):void
+		{
+			_relaxedEventMap = value;
+		}
+		
+		protected var _optionCommandMap:IOptionCommandMap;
+		
+		public function get optionCommandMap():IOptionCommandMap
+		{
+			return _optionCommandMap ||= new OptionCommandMap(eventDispatcher, injector, reflector);
+		}
+		
+		protected var _guardedCommandMap:IGuardedCommandMap;
+		
+		public function get guardedCommandMap():IGuardedCommandMap
+		{
+			return _guardedCommandMap ||= new GuardedCommandMap(eventDispatcher, injector, reflector);
+		}
+		
+		override protected function mapInjections():void
+		{
+			super.mapInjections();
+			injector.mapValue(IRelaxedEventMap, relaxedEventMap);
+			injector.mapValue(IOptionCommandMap, optionCommandMap);
+			injector.mapValue(IGuardedCommandMap, guardedCommandMap);
+		}
+		
+		override protected function get commandMap():ICommandMap
+		{
+			return _commandMap ||= guardedCommandMap;
+		}		
 	}
 }

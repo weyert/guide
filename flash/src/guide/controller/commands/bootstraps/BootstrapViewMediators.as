@@ -1,7 +1,11 @@
 package guide.controller.commands.bootstraps {
 	
-	import guide.view.ApplicationViewMediator;
 	import guide.view.ApplicationView;
+	import guide.view.ApplicationViewMediator;
+	import guide.view.ChannelGridView;
+	import guide.view.ChannelGridViewMediator;
+	import guide.view.ChannelListView;
+	import guide.view.ChannelListViewMediator;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -9,6 +13,8 @@ package guide.controller.commands.bootstraps {
 		
 		override public function execute(): void {
 			mediatorMap.mapView(ApplicationView, ApplicationViewMediator);
+			mediatorMap.mapView(ChannelListView, ChannelListViewMediator);
+			mediatorMap.mapView(ChannelGridView, ChannelGridViewMediator);
 		} 
 	}
 }
